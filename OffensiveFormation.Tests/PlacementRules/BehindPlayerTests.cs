@@ -38,6 +38,30 @@ namespace OffensiveFormation.Tests.PlacementRules
 
                 Assert.Equal<Location>(expectedLocation, playerToPlace.PlacedLocation);
             }
+
+            [Fact]
+            public void PlacingPlayerZeroUnitsBehindThrowsExceptionWithProperMessage()
+            {
+                PlacedPlayer playerToBeBehind = new PlacedPlayer();
+                PlacedPlayer playerToPlace = new PlacedPlayer();
+
+                IPlacementRule placementRule = new BehindPlayer(playerToBeBehind, 0);
+                PlacementException ex = Assert.Throws<PlacementException>(() => placementRule.Place(playerToPlace));
+
+                Assert.Equal("Can't place 0 units behind.", ex.Message);
+            }
+
+            [Fact]
+            public void PlacingPlayerNegativeUnitsBehindThrowsExceptionWithProperMessage()
+            {
+                PlacedPlayer playerToBeBehind = new PlacedPlayer();
+                PlacedPlayer playerToPlace = new PlacedPlayer();
+
+                IPlacementRule placementRule = new BehindPlayer(playerToBeBehind, -6);
+                PlacementException ex = Assert.Throws<PlacementException>(() => placementRule.Place(playerToPlace));
+
+                Assert.Equal("Can't place player negative units behind player.", ex.Message);
+            }
         }
     }
 }

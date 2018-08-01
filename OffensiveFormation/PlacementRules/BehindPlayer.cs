@@ -19,6 +19,14 @@ namespace OffensiveFormation.PlacementRules
 
         public PlacedPlayer Place(PlacedPlayer placedPlayer)
         {
+            if (_DistanceBehind == 0)
+            {
+                throw new PlacementException("Can't place 0 units behind.");
+            }
+            if (_DistanceBehind < 0)
+            {
+                throw new PlacementException("Can't place player negative units behind player.");
+            }
             return new PlacedPlayer(
                 _PlayerBehind.PlacedLocation.XPosition,
                 _PlayerBehind.PlacedLocation.YPosition + _DistanceBehind
