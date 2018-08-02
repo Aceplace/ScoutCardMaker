@@ -60,12 +60,16 @@ namespace OffensiveFormation
 
         public PlacedPlayer GetNumberedSkillStrong(FlowDirection flowDirection, int number)
         {
-            return new PlacedPlayer();
+            return StrongSide == Direction.Right ? 
+                GetNumberedSkillRight(flowDirection, number) : 
+                GetNumberedSkillLeft(flowDirection, number);
         }
 
         public PlacedPlayer GetNumberedSkillWeak(FlowDirection flowDirection, int number)
         {
-            return new PlacedPlayer();
+            return StrongSide == Direction.Left ?
+                GetNumberedSkillRight(flowDirection, number) :
+                GetNumberedSkillLeft(flowDirection, number);
         }
 
         public PlacedPlayer GetNumberedSkillRight(FlowDirection flowDirection, int number)
@@ -99,6 +103,30 @@ namespace OffensiveFormation
 
         public PlacedPlayer GetNumberedSkillLeft(FlowDirection flowDirection, int number)
         {
+            if (number < 0)
+            {
+                throw new PlacedFormationException("Can't get negative numbered skill player.");
+            }
+            if (number == 0)
+            {
+                throw new PlacedFormationException("Can't get 0 numbered skill player.");
+            }
+            if (number > 6)
+            {
+                throw new PlacedFormationException("Can't get numbers skill player larger then 6. There are only 6 skill players.");
+            }
+
+            var result = SkillPlayers.OrderBy(placedPlayer => placedPlayer.PlacedLocation.XPosition)
+                        .ThenBy(placedPlayer => placedPlayer.PlacedLocation.YPosition);
+            int i = 1;
+            foreach (PlacedPlayer placedPlayer in result)
+            {
+                if (i == number)
+                {
+                    return placedPlayer;
+                }
+                i++;
+            }
             return new PlacedPlayer();
         }
 

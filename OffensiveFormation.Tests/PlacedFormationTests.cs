@@ -230,5 +230,186 @@ namespace OffensiveFormation.Tests
                 Assert.Equal("Can't get numbers skill player larger then 6. There are only 6 skill players.", ex.Message);
             }
         }
+
+        public class GetNumberedSkillLeftMethod
+        {
+            public static IEnumerable<object[]> GetsCorrectPlayerFromOutsideInTestData()
+            {
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[0], 1, 4 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[0], 2, 5 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[0], 3, 2 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[0], 4, 3 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[0], 5, 1 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[0], 6, 0 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[1], 3, 3 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[2], 3, 2 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[3], 1, 0 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[3], 2, 5 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[3], 3, 3 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[3], 4, 4 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[3], 5, 2 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[3], 6, 1 };
+            }
+
+            [Theory]
+            [MemberData(nameof(GetsCorrectPlayerFromOutsideInTestData))]
+            public void GetsCorrectPlayerFromOutsideIn(PlacedFormation placedFormation, int number, int expectedPlayerIndex)
+            {
+                PlacedPlayer expectedPlayer = placedFormation.SkillPlayers[expectedPlayerIndex];
+
+                PlacedPlayer returnedPlayer = placedFormation.GetNumberedSkillLeft(FlowDirection.OutsideIn, number);
+                bool samePlayer = ReferenceEquals(expectedPlayer, returnedPlayer);
+
+                Assert.True(samePlayer);
+            }
+
+            [Fact]
+            public void PassingNegativeValueThrowsExceptionWithProperMessage()
+            {
+                PlacedFormation placedFormation = new PlacedFormation();
+                PlacedFormationException ex = Assert.Throws<PlacedFormationException>(() => placedFormation.GetNumberedSkillLeft(FlowDirection.OutsideIn, -3));
+
+                Assert.Equal("Can't get negative numbered skill player.", ex.Message);
+            }
+
+            [Fact]
+            public void Passing0ThrowsExceptionWithProperMessage()
+            {
+                PlacedFormation placedFormation = new PlacedFormation();
+                PlacedFormationException ex = Assert.Throws<PlacedFormationException>(() => placedFormation.GetNumberedSkillLeft(FlowDirection.OutsideIn, 0));
+
+                Assert.Equal("Can't get 0 numbered skill player.", ex.Message);
+            }
+
+            [Fact]
+            public void PassingTooLargeAValueThrowsExceptionWithProperMessage()
+            {
+                PlacedFormation placedFormation = new PlacedFormation();
+                PlacedFormationException ex = Assert.Throws<PlacedFormationException>(() => placedFormation.GetNumberedSkillLeft(FlowDirection.OutsideIn, 7));
+
+                Assert.Equal("Can't get numbers skill player larger then 6. There are only 6 skill players.", ex.Message);
+            }
+        }
+
+        public class GetNumberedSkillStrongMethod
+        {
+            public static IEnumerable<object[]> GetsCorrectPlayerFromOutsideInTestData()
+            {
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[0], Direction.Right, 1, 0 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[0], Direction.Right, 2, 1 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[0], Direction.Right, 3, 3 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[0], Direction.Right, 4, 2 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[0], Direction.Right, 5, 5 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[0], Direction.Right, 6, 4 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[0], Direction.Left, 1, 4 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[0], Direction.Left, 2, 5 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[0], Direction.Left, 3, 2 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[0], Direction.Left, 4, 3 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[0], Direction.Left, 5, 1 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[0], Direction.Left, 6, 0 };
+            }
+
+            [Theory]
+            [MemberData(nameof(GetsCorrectPlayerFromOutsideInTestData))]
+            public void GetsCorrectPlayerFromOutsideIn(PlacedFormation placedFormation, Direction strongDirection, 
+                                                    int number, int expectedPlayerIndex)
+            {
+                placedFormation.StrongSide = strongDirection;
+                PlacedPlayer expectedPlayer = placedFormation.SkillPlayers[expectedPlayerIndex];
+
+                PlacedPlayer returnedPlayer = placedFormation.GetNumberedSkillStrong(FlowDirection.OutsideIn, number);
+                bool samePlayer = ReferenceEquals(expectedPlayer, returnedPlayer);
+
+                Assert.True(samePlayer);
+            }
+
+            [Fact]
+            public void PassingNegativeValueThrowsExceptionWithProperMessage()
+            {
+                PlacedFormation placedFormation = new PlacedFormation();
+                PlacedFormationException ex = Assert.Throws<PlacedFormationException>(() => placedFormation.GetNumberedSkillStrong(FlowDirection.OutsideIn, -3));
+
+                Assert.Equal("Can't get negative numbered skill player.", ex.Message);
+            }
+
+            [Fact]
+            public void Passing0ThrowsExceptionWithProperMessage()
+            {
+                PlacedFormation placedFormation = new PlacedFormation();
+                PlacedFormationException ex = Assert.Throws<PlacedFormationException>(() => placedFormation.GetNumberedSkillStrong(FlowDirection.OutsideIn, 0));
+
+                Assert.Equal("Can't get 0 numbered skill player.", ex.Message);
+            }
+
+            [Fact]
+            public void PassingTooLargeAValueThrowsExceptionWithProperMessage()
+            {
+                PlacedFormation placedFormation = new PlacedFormation();
+                PlacedFormationException ex = Assert.Throws<PlacedFormationException>(() => placedFormation.GetNumberedSkillStrong(FlowDirection.OutsideIn, 7));
+
+                Assert.Equal("Can't get numbers skill player larger then 6. There are only 6 skill players.", ex.Message);
+            }
+        }
+
+        public class GetNumberedSkillWeakMethod
+        {
+            public static IEnumerable<object[]> GetsCorrectPlayerFromOutsideInTestData()
+            {
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[0], Direction.Right, 1, 4 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[0], Direction.Right, 2, 5 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[0], Direction.Right, 3, 2 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[0], Direction.Right, 4, 3 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[0], Direction.Right, 5, 1 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[0], Direction.Right, 6, 0 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[0], Direction.Left, 1, 0 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[0], Direction.Left, 2, 1 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[0], Direction.Left, 3, 3 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[0], Direction.Left, 4, 2 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[0], Direction.Left, 5, 5 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[0], Direction.Left, 6, 4 };
+            }
+
+            [Theory]
+            [MemberData(nameof(GetsCorrectPlayerFromOutsideInTestData))]
+            public void GetsCorrectPlayerFromOutsideIn(PlacedFormation placedFormation, Direction strongDirection,
+                                                    int number, int expectedPlayerIndex)
+            {
+                placedFormation.StrongSide = strongDirection;
+                PlacedPlayer expectedPlayer = placedFormation.SkillPlayers[expectedPlayerIndex];
+
+                PlacedPlayer returnedPlayer = placedFormation.GetNumberedSkillWeak(FlowDirection.OutsideIn, number);
+                bool samePlayer = ReferenceEquals(expectedPlayer, returnedPlayer);
+
+                Assert.True(samePlayer);
+            }
+
+            [Fact]
+            public void PassingNegativeValueThrowsExceptionWithProperMessage()
+            {
+                PlacedFormation placedFormation = new PlacedFormation();
+                PlacedFormationException ex = Assert.Throws<PlacedFormationException>(() => placedFormation.GetNumberedSkillWeak(FlowDirection.OutsideIn, -3));
+
+                Assert.Equal("Can't get negative numbered skill player.", ex.Message);
+            }
+
+            [Fact]
+            public void Passing0ThrowsExceptionWithProperMessage()
+            {
+                PlacedFormation placedFormation = new PlacedFormation();
+                PlacedFormationException ex = Assert.Throws<PlacedFormationException>(() => placedFormation.GetNumberedSkillWeak(FlowDirection.OutsideIn, 0));
+
+                Assert.Equal("Can't get 0 numbered skill player.", ex.Message);
+            }
+
+            [Fact]
+            public void PassingTooLargeAValueThrowsExceptionWithProperMessage()
+            {
+                PlacedFormation placedFormation = new PlacedFormation();
+                PlacedFormationException ex = Assert.Throws<PlacedFormationException>(() => placedFormation.GetNumberedSkillWeak(FlowDirection.OutsideIn, 7));
+
+                Assert.Equal("Can't get numbers skill player larger then 6. There are only 6 skill players.", ex.Message);
+            }
+        }
+
     }
 }
