@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="FormationPlacerTester.cs" />
     <Compile Include="LocationTester.cs" />
+    <Compile Include="PlacedFormationTests.cs" />
     <Compile Include="PlacedPlayerTests.cs" />
     <Compile Include="PlacementRules\BehindPlayerTests.cs" />
     <Compile Include="PlacementRules\InsidePlayerTests.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="PlacementRules\ToLeftOfTests.cs" />
     <Compile Include="PlacementRules\ToRightOfTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OffensiveFormation\OffensiveFormation.csproj">

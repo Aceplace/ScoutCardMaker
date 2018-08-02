@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace OffensiveFormation
 {
-    public interface IPlacementRule
+    public enum Direction
     {
-        PlacedPlayer Place(PlacedPlayer placedPlayer);
+        Left, Right
     }
 }
