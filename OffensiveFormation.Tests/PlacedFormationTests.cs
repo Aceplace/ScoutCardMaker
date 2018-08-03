@@ -191,6 +191,21 @@ namespace OffensiveFormation.Tests
                 yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[3], 6, 0 };
             }
 
+            public static IEnumerable<object[]> GetsCorrectPlayerFromInsideOutTestData()
+            {
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[0], 1, 2 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[0], 2, 3 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[0], 3, 1 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[0], 4, 0 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[1], 1, 3 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[1], 2, 2 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[1], 3, 1 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[1], 4, 0 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[2], 1, 2 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[2], 2, 3 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[3], 2, 1 };
+            }
+
             [Theory]
             [MemberData(nameof(GetsCorrectPlayerFromOutsideInTestData))]
             public void GetsCorrectPlayerFromOutsideIn(PlacedFormation placedFormation, int number, int expectedPlayerIndex)
@@ -198,6 +213,18 @@ namespace OffensiveFormation.Tests
                 PlacedPlayer expectedPlayer = placedFormation.SkillPlayers[expectedPlayerIndex];
 
                 PlacedPlayer returnedPlayer = placedFormation.GetNumberedSkillRight(FlowDirection.OutsideIn, number);
+                bool samePlayer = ReferenceEquals(expectedPlayer, returnedPlayer);
+
+                Assert.True(samePlayer);
+            }
+
+            [Theory]
+            [MemberData(nameof(GetsCorrectPlayerFromInsideOutTestData))]
+            public void GetsCorrectPlayerFromInsideOut(PlacedFormation placedFormation, int number, int expectedPlayerIndex)
+            {
+                PlacedPlayer expectedPlayer = placedFormation.SkillPlayers[expectedPlayerIndex];
+
+                PlacedPlayer returnedPlayer = placedFormation.GetNumberedSkillRight(FlowDirection.InsideOut, number);
                 bool samePlayer = ReferenceEquals(expectedPlayer, returnedPlayer);
 
                 Assert.True(samePlayer);
@@ -229,6 +256,24 @@ namespace OffensiveFormation.Tests
 
                 Assert.Equal("Can't get numbers skill player larger then 6. There are only 6 skill players.", ex.Message);
             }
+
+            [Fact]
+            public void NotEnoughReceiversOutsideTackleThrowsExceptionWithProperMessage_01()
+            {
+                PlacedFormation placedFormation = NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[0];
+                PlacedFormationException ex = Assert.Throws<PlacedFormationException>(() => placedFormation.GetNumberedSkillRight(FlowDirection.InsideOut, 5));
+
+                Assert.Equal("Not enough skill players outside tackle.", ex.Message);
+            }
+
+            [Fact]
+            public void NotEnoughReceiversOutsideTackleThrowsExceptionWithProperMessage_02()
+            {
+                PlacedFormation placedFormation = NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[3];
+                PlacedFormationException ex = Assert.Throws<PlacedFormationException>(() => placedFormation.GetNumberedSkillRight(FlowDirection.InsideOut, 3));
+
+                Assert.Equal("Not enough skill players outside tackle.", ex.Message);
+            }
         }
 
         public class GetNumberedSkillLeftMethod
@@ -251,6 +296,16 @@ namespace OffensiveFormation.Tests
                 yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[3], 6, 1 };
             }
 
+            public static IEnumerable<object[]> GetsCorrectPlayerFromInsideOutTestData()
+            {
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[0], 1, 4 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[3], 1, 4 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[3], 2, 3 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[3], 3, 5 };
+                yield return new object[] { NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[3], 4, 0 };
+
+            }
+
             [Theory]
             [MemberData(nameof(GetsCorrectPlayerFromOutsideInTestData))]
             public void GetsCorrectPlayerFromOutsideIn(PlacedFormation placedFormation, int number, int expectedPlayerIndex)
@@ -258,6 +313,18 @@ namespace OffensiveFormation.Tests
                 PlacedPlayer expectedPlayer = placedFormation.SkillPlayers[expectedPlayerIndex];
 
                 PlacedPlayer returnedPlayer = placedFormation.GetNumberedSkillLeft(FlowDirection.OutsideIn, number);
+                bool samePlayer = ReferenceEquals(expectedPlayer, returnedPlayer);
+
+                Assert.True(samePlayer);
+            }
+
+            [Theory]
+            [MemberData(nameof(GetsCorrectPlayerFromInsideOutTestData))]
+            public void GetsCorrectPlayerFromInsideOut(PlacedFormation placedFormation, int number, int expectedPlayerIndex)
+            {
+                PlacedPlayer expectedPlayer = placedFormation.SkillPlayers[expectedPlayerIndex];
+
+                PlacedPlayer returnedPlayer = placedFormation.GetNumberedSkillLeft(FlowDirection.InsideOut, number);
                 bool samePlayer = ReferenceEquals(expectedPlayer, returnedPlayer);
 
                 Assert.True(samePlayer);
@@ -289,6 +356,26 @@ namespace OffensiveFormation.Tests
 
                 Assert.Equal("Can't get numbers skill player larger then 6. There are only 6 skill players.", ex.Message);
             }
+
+            [Fact]
+            public void NotEnoughReceiversOutsideTackleThrowsExceptionWithProperMessage_01()
+            {
+                PlacedFormation placedFormation = NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[0];
+                PlacedFormationException ex = Assert.Throws<PlacedFormationException>(() => placedFormation.GetNumberedSkillLeft(FlowDirection.InsideOut, 2));
+
+                Assert.Equal("Not enough skill players outside tackle.", ex.Message);
+            }
+
+            [Fact]
+            public void NotEnoughReceiversOutsideTackleThrowsExceptionWithProperMessage_02()
+            {
+                PlacedFormation placedFormation = NumberedSkillPlayersPlacedFormationTestData.testPlacedFormations[3];
+                PlacedFormationException ex = Assert.Throws<PlacedFormationException>(() => placedFormation.GetNumberedSkillLeft(FlowDirection.InsideOut, 5));
+
+                Assert.Equal("Not enough skill players outside tackle.", ex.Message);
+            }
+
+
         }
 
         public class GetNumberedSkillStrongMethod
@@ -410,6 +497,7 @@ namespace OffensiveFormation.Tests
                 Assert.Equal("Can't get numbers skill player larger then 6. There are only 6 skill players.", ex.Message);
             }
         }
+
 
     }
 }

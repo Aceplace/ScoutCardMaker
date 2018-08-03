@@ -87,8 +87,20 @@ namespace OffensiveFormation
                 throw new PlacedFormationException("Can't get numbers skill player larger then 6. There are only 6 skill players.");
             }
 
-            var result = SkillPlayers.OrderByDescending(placedPlayer => placedPlayer.PlacedLocation.XPosition)
+            IOrderedEnumerable<PlacedPlayer> result;
+            if (flowDirection == FlowDirection.OutsideIn)
+            {
+                result = SkillPlayers.OrderByDescending(placedPlayer => placedPlayer.PlacedLocation.XPosition)
                         .ThenBy(placedPlayer => placedPlayer.PlacedLocation.YPosition);
+            }
+            else
+            {
+                result = SkillPlayers
+                    .Where(placedPlayer => placedPlayer.PlacedLocation.XPosition > RightTackle.PlacedLocation.XPosition)
+                    .OrderBy(placedPlayer => placedPlayer.PlacedLocation.XPosition)
+                    .ThenBy(placedPlayer => placedPlayer.PlacedLocation.YPosition);
+            }
+            
             int i = 1;
             foreach (PlacedPlayer placedPlayer in result)
             {
@@ -98,7 +110,7 @@ namespace OffensiveFormation
                 }
                 i++;
             }
-            return new PlacedPlayer();
+            throw new PlacedFormationException("Not enough skill players outside tackle.");
         }
 
         public PlacedPlayer GetNumberedSkillLeft(FlowDirection flowDirection, int number)
@@ -116,8 +128,20 @@ namespace OffensiveFormation
                 throw new PlacedFormationException("Can't get numbers skill player larger then 6. There are only 6 skill players.");
             }
 
-            var result = SkillPlayers.OrderBy(placedPlayer => placedPlayer.PlacedLocation.XPosition)
-                        .ThenBy(placedPlayer => placedPlayer.PlacedLocation.YPosition);
+            IOrderedEnumerable<PlacedPlayer> result;
+            if (flowDirection == FlowDirection.OutsideIn)
+            {
+                result = SkillPlayers.OrderBy(placedPlayer => placedPlayer.PlacedLocation.XPosition)
+                                        .ThenBy(placedPlayer => placedPlayer.PlacedLocation.YPosition);
+            }
+            else
+            {
+                result = SkillPlayers
+                    .Where(placedPlayer => placedPlayer.PlacedLocation.XPosition < LeftTackle.PlacedLocation.XPosition)
+                    .OrderByDescending(placedPlayer => placedPlayer.PlacedLocation.XPosition)
+                    .ThenBy(placedPlayer => placedPlayer.PlacedLocation.YPosition);
+            }
+
             int i = 1;
             foreach (PlacedPlayer placedPlayer in result)
             {
@@ -127,7 +151,7 @@ namespace OffensiveFormation
                 }
                 i++;
             }
-            return new PlacedPlayer();
+            throw new PlacedFormationException("Not enough skill players outside tackle.");
         }
 
     }
