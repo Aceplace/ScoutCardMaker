@@ -52,18 +52,15 @@
     <Compile Include="PlacedFormation\PlacedFormationException.cs" />
     <Compile Include="PlacedFormation\PlacementRuleFactory.cs" />
     <Compile Include="PlacementRuleAdapters\IPlacementRuleAdapter.cs" />
+    <Compile Include="PlacementRuleAdapters\RelativeToPlayerHorizontallyAdapter.cs" />
     <Compile Include="PlacementRules\IPlacementRule.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="PlacedFormation\PlacedFormation.cs" />
     <Compile Include="PlacedFormation\PlacedPlayer.cs" />
     <Compile Include="PlacementRules\BehindPlayer.cs" />
-    <Compile Include="PlacementRules\InsidePlayer.cs" />
     <Compile Include="PlacementRules\OnLineOfScrimmage.cs" />
-    <Compile Include="PlacementRules\OutsidePlayer.cs" />
     <Compile Include="PlacementRules\PlacementException.cs" />
     <Compile Include="PlacementRules\RelativeToPlayerHorizontally.cs" />
-    <Compile Include="PlacementRules\ToLeftOf.cs" />
-    <Compile Include="PlacementRules\ToRightOf.cs" />
     <Compile Include="Formations\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

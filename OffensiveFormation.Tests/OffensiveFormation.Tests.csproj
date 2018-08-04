@@ -63,13 +63,10 @@
     <Compile Include="PlacedFormationTests.cs" />
     <Compile Include="PlacedPlayerTests.cs" />
     <Compile Include="PlacementRuleAdapters\BehindPlayerAdapterTests.cs" />
+    <Compile Include="PlacementRuleAdapters\RelativeToPlayerHorizontallyAdapterTests.cs" />
     <Compile Include="PlacementRules\BehindPlayerTests.cs" />
-    <Compile Include="PlacementRules\InsidePlayerTests.cs" />
     <Compile Include="PlacementRules\OnLineOfScrimmageTests.cs" />
-    <Compile Include="PlacementRules\OutsidePlayerTests.cs" />
     <Compile Include="PlacementRules\RelativeToPlayerHorizontallyTests.cs" />
-    <Compile Include="PlacementRules\ToLeftOfTests.cs" />
-    <Compile Include="PlacementRules\ToRightOfTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
