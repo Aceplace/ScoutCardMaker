@@ -9,9 +9,16 @@ namespace OffensiveFormation
     /// <summary>
     /// Placed players into proper locations based off of formation rules.
     /// </summary>
-    public class FormationPlacer
+    public class FormationPlacer : IFormationPlacer
     {
-        public PlacedFormation Place()
+        IPlacementRuleFactory _PlacementRuleFactory;
+
+        public FormationPlacer(IPlacementRuleFactory placementRuleFactory)
+        {
+            _PlacementRuleFactory = placementRuleFactory;
+        }
+
+        public PlacedFormation ToPlacedFormation(Formation formation)
         {
             PlacedFormation placedFormation = new PlacedFormation();
 
@@ -22,5 +29,6 @@ namespace OffensiveFormation
 
             return placedFormation;
         }
+
     }
 }

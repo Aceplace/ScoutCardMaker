@@ -10,15 +10,22 @@ namespace OffensiveFormation.Tests
 {
     public class FormationPlacerTests
     {
-        public class PlaceMethod
+        public class ToPlacedFormation
         {
+            Formation formation;
+
+            public ToPlacedFormation()
+            {
+                formation = new Formation();
+            }
+
             [Fact]
             public void PlacesLinemanInCorrectLocations()
             {
                 FormationPlacer formationPlacer = new FormationPlacer();
                 Location expectedLocation = new Location(0, 0);
 
-                PlacedFormation placedFormation = formationPlacer.Place();
+                PlacedFormation placedFormation = formationPlacer.ToPlacedFormation(formation);
                 bool inExpectedLocation = placedFormation.Center.Location == expectedLocation;
 
                 Assert.True(inExpectedLocation);
@@ -31,7 +38,7 @@ namespace OffensiveFormation.Tests
                 Location expectedLeftGuardLocation = new Location(-4, 0);
                 Location expectedRightGuardLocation = new Location(4, 0);
 
-                PlacedFormation placedFormation = formationPlacer.Place();
+                PlacedFormation placedFormation = formationPlacer.ToPlacedFormation(formation);
                 bool leftGuardInExpectedLocation = placedFormation.LeftGuard.Location == expectedLeftGuardLocation;
                 bool rightGuardInExpectedLocation = placedFormation.RightGuard.Location == expectedRightGuardLocation;
 
@@ -46,7 +53,7 @@ namespace OffensiveFormation.Tests
                 Location expectedLeftTackleLocation = new Location(-8, 0);
                 Location expectedRightTackleLocation = new Location(8, 0);
 
-                PlacedFormation placedFormation = formationPlacer.Place();
+                PlacedFormation placedFormation = formationPlacer.ToPlacedFormation(formation);
                 bool leftTackleInExpectedLocation = placedFormation.LeftTackle.Location == expectedLeftTackleLocation;
                 bool rightTackleInExpectedLocation = placedFormation.RightTackle.Location == expectedRightTackleLocation;
 
