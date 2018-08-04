@@ -61,6 +61,7 @@
     <Compile Include="PlacementRules\OnLineOfScrimmage.cs" />
     <Compile Include="PlacementRules\OutsidePlayer.cs" />
     <Compile Include="PlacementRules\PlacementException.cs" />
+    <Compile Include="PlacementRules\RelativeToPlayerHorizontally.cs" />
     <Compile Include="PlacementRules\ToLeftOf.cs" />
     <Compile Include="PlacementRules\ToRightOf.cs" />
     <Compile Include="Formations\Player.cs" />
