@@ -8,19 +8,19 @@ namespace OffensiveFormation
 {
     public class Location
     {
-        public int XPosition { get; set; }
-        public int YPosition { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
 
         public Location()
         {
-            XPosition = 0;
-            YPosition = 0;
+            X = 0;
+            Y = 0;
         }
 
-        public Location(int xPosition, int yPosition)
+        public Location(int x, int y)
         {
-            XPosition = xPosition;
-            YPosition = yPosition;
+            X = x;
+            Y = y;
         }
 
         public override bool Equals(object obj)
@@ -31,23 +31,23 @@ namespace OffensiveFormation
             }
 
             Location otherLocation = (Location)obj;
-            return XPosition == otherLocation.XPosition && YPosition == otherLocation.YPosition;
+            return X == otherLocation.X && Y == otherLocation.Y;
         }
 
         public static bool operator ==(Location location1, Location location2)
         {
-            if (ReferenceEquals(location1, null))
+            if (location1 is null)
             {
-                return ReferenceEquals(location2, null);
+                return location2 is null;
             }
             return location1.Equals(location2);
         }
 
         public static bool operator !=(Location location1, Location location2)
         {
-            if (ReferenceEquals(location1, null))
+            if (location1 is null)
             {
-                return !ReferenceEquals(location2, null);
+                return !(location2 is null);
             }
             return !location1.Equals(location2);
         }

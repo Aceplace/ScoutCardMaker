@@ -29,8 +29,8 @@ namespace OffensiveFormation.PlacementRules
             }
 
             return new PlacedPlayer(
-                _PlayerToRightOf.PlacedLocation.XPosition + _DistanceToRightOf,
-                placedPlayer.PlacedLocation.YPosition
+                _PlayerToRightOf.Location.X + _DistanceToRightOf,
+                placedPlayer.Location.Y
                 );
 
         }

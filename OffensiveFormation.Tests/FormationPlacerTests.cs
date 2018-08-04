@@ -8,7 +8,7 @@ using OffensiveFormation;
 
 namespace OffensiveFormation.Tests
 {
-    public class FormationPlacerTester
+    public class FormationPlacerTests
     {
         public class PlaceMethod
         {
@@ -19,7 +19,7 @@ namespace OffensiveFormation.Tests
                 Location expectedLocation = new Location(0, 0);
 
                 PlacedFormation placedFormation = formationPlacer.Place();
-                bool inExpectedLocation = placedFormation.Center.PlacedLocation == expectedLocation;
+                bool inExpectedLocation = placedFormation.Center.Location == expectedLocation;
 
                 Assert.True(inExpectedLocation);
             }
@@ -32,8 +32,8 @@ namespace OffensiveFormation.Tests
                 Location expectedRightGuardLocation = new Location(4, 0);
 
                 PlacedFormation placedFormation = formationPlacer.Place();
-                bool leftGuardInExpectedLocation = placedFormation.LeftGuard.PlacedLocation == expectedLeftGuardLocation;
-                bool rightGuardInExpectedLocation = placedFormation.RightGuard.PlacedLocation == expectedRightGuardLocation;
+                bool leftGuardInExpectedLocation = placedFormation.LeftGuard.Location == expectedLeftGuardLocation;
+                bool rightGuardInExpectedLocation = placedFormation.RightGuard.Location == expectedRightGuardLocation;
 
                 Assert.True(leftGuardInExpectedLocation);
                 Assert.True(rightGuardInExpectedLocation);
@@ -47,8 +47,8 @@ namespace OffensiveFormation.Tests
                 Location expectedRightTackleLocation = new Location(8, 0);
 
                 PlacedFormation placedFormation = formationPlacer.Place();
-                bool leftTackleInExpectedLocation = placedFormation.LeftTackle.PlacedLocation == expectedLeftTackleLocation;
-                bool rightTackleInExpectedLocation = placedFormation.RightTackle.PlacedLocation == expectedRightTackleLocation;
+                bool leftTackleInExpectedLocation = placedFormation.LeftTackle.Location == expectedLeftTackleLocation;
+                bool rightTackleInExpectedLocation = placedFormation.RightTackle.Location == expectedRightTackleLocation;
 
                 Assert.True(leftTackleInExpectedLocation);
                 Assert.True(rightTackleInExpectedLocation);

@@ -28,7 +28,7 @@ namespace OffensiveFormation.Tests.PlacementRules
                 IPlacementRule placementRule = new OutsidePlayer(playerToBeOutside, distanceOutside);
                 playerToPlace = placementRule.Place(playerToPlace);
 
-                Assert.Equal<Location>(expectedLocation, playerToPlace.PlacedLocation);
+                Assert.Equal<Location>(expectedLocation, playerToPlace.Location);
             }     
             
             [Fact]

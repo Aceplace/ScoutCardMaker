@@ -22,7 +22,7 @@ namespace OffensiveFormation.Tests.PlacementRules
                 IPlacementRule placementRule = new BehindPlayer(playerToBeBehind, 1);
                 playerToPlace = placementRule.Place(playerToPlace);
 
-                Assert.Equal<Location>(expectedLocation, playerToPlace.PlacedLocation);
+                Assert.Equal<Location>(expectedLocation, playerToPlace.Location);
             }
 
 
@@ -36,7 +36,7 @@ namespace OffensiveFormation.Tests.PlacementRules
                 IPlacementRule placementRule = new BehindPlayer(playerToBeBehind, 3);
                 playerToPlace = placementRule.Place(playerToPlace);
 
-                Assert.Equal<Location>(expectedLocation, playerToPlace.PlacedLocation);
+                Assert.Equal<Location>(expectedLocation, playerToPlace.Location);
             }
 
             [Fact]

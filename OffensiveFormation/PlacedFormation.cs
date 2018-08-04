@@ -61,59 +61,28 @@ namespace OffensiveFormation
         public PlacedPlayer GetNumberedSkillStrong(FlowDirection flowDirection, int number)
         {
             return StrongSide == Direction.Right ? 
-                GetNumberedSkillRight(flowDirection, number) : 
-                GetNumberedSkillLeft(flowDirection, number);
+                GetNumberedSkillDirectional(Direction.Right, flowDirection, number) : 
+                GetNumberedSkillDirectional(Direction.Left, flowDirection, number);
         }
 
         public PlacedPlayer GetNumberedSkillWeak(FlowDirection flowDirection, int number)
         {
             return StrongSide == Direction.Left ?
-                GetNumberedSkillRight(flowDirection, number) :
-                GetNumberedSkillLeft(flowDirection, number);
+                GetNumberedSkillDirectional(Direction.Right, flowDirection, number):
+                GetNumberedSkillDirectional(Direction.Left, flowDirection, number);
         }
 
         public PlacedPlayer GetNumberedSkillRight(FlowDirection flowDirection, int number)
         {
-            if (number < 0)
-            {
-                throw new PlacedFormationException("Can't get negative numbered skill player.");
-            }
-            if (number == 0)
-            {
-                throw new PlacedFormationException("Can't get 0 numbered skill player.");
-            }
-            if (number > 6)
-            {
-                throw new PlacedFormationException("Can't get numbers skill player larger then 6. There are only 6 skill players.");
-            }
-
-            IOrderedEnumerable<PlacedPlayer> result;
-            if (flowDirection == FlowDirection.OutsideIn)
-            {
-                result = SkillPlayers.OrderByDescending(placedPlayer => placedPlayer.PlacedLocation.XPosition)
-                        .ThenBy(placedPlayer => placedPlayer.PlacedLocation.YPosition);
-            }
-            else
-            {
-                result = SkillPlayers
-                    .Where(placedPlayer => placedPlayer.PlacedLocation.XPosition > RightTackle.PlacedLocation.XPosition)
-                    .OrderBy(placedPlayer => placedPlayer.PlacedLocation.XPosition)
-                    .ThenBy(placedPlayer => placedPlayer.PlacedLocation.YPosition);
-            }
-            
-            int i = 1;
-            foreach (PlacedPlayer placedPlayer in result)
-            {
-                if ( i == number)
-                {
-                    return placedPlayer;
-                }
-                i++;
-            }
-            throw new PlacedFormationException("Not enough skill players outside tackle.");
+            return GetNumberedSkillDirectional(Direction.Right, flowDirection, number);
         }
 
         public PlacedPlayer GetNumberedSkillLeft(FlowDirection flowDirection, int number)
+        {
+            return GetNumberedSkillDirectional(Direction.Left, flowDirection, number);
+        }
+
+        private PlacedPlayer GetNumberedSkillDirectional(Direction direction, FlowDirection flowDirection, int number)
         {
             if (number < 0)
             {
@@ -131,15 +100,35 @@ namespace OffensiveFormation
             IOrderedEnumerable<PlacedPlayer> result;
             if (flowDirection == FlowDirection.OutsideIn)
             {
-                result = SkillPlayers.OrderBy(placedPlayer => placedPlayer.PlacedLocation.XPosition)
-                                        .ThenBy(placedPlayer => placedPlayer.PlacedLocation.YPosition);
+                if (direction == Direction.Left)
+                {
+                    result = SkillPlayers.OrderBy(placedPlayer => placedPlayer.Location.X)
+                             .ThenBy(placedPlayer => placedPlayer.Location.Y);
+                }
+                else
+                {
+                    result = SkillPlayers.OrderByDescending(placedPlayer => placedPlayer.Location.X)
+                        .ThenBy(placedPlayer => placedPlayer.Location.Y);
+                }
+                
             }
             else
             {
-                result = SkillPlayers
-                    .Where(placedPlayer => placedPlayer.PlacedLocation.XPosition < LeftTackle.PlacedLocation.XPosition)
-                    .OrderByDescending(placedPlayer => placedPlayer.PlacedLocation.XPosition)
-                    .ThenBy(placedPlayer => placedPlayer.PlacedLocation.YPosition);
+                if (direction == Direction.Left)
+                {
+                    result = SkillPlayers
+                            .Where(placedPlayer => placedPlayer.Location.X < LeftTackle.Location.X)
+                            .OrderByDescending(placedPlayer => placedPlayer.Location.X)
+                            .ThenBy(placedPlayer => placedPlayer.Location.Y);
+                }
+                else
+                {
+                    result = SkillPlayers
+                            .Where(placedPlayer => placedPlayer.Location.X > RightTackle.Location.X)
+                            .OrderBy(placedPlayer => placedPlayer.Location.X)
+                            .ThenBy(placedPlayer => placedPlayer.Location.Y);
+                }
+                
             }
 
             int i = 1;

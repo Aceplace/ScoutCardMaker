@@ -28,18 +28,18 @@ namespace OffensiveFormation.PlacementRules
                 throw new PlacementException("Can't place player negative distance outside player.");
             }
 
-            if (_PlayerOutside.PlacedLocation.XPosition > 0)
+            if (_PlayerOutside.Location.X > 0)
             {
                 return new PlacedPlayer(
-                    _PlayerOutside.PlacedLocation.XPosition + _DistanceOutside, 
-                    placedPlayer.PlacedLocation.YPosition
+                    _PlayerOutside.Location.X + _DistanceOutside, 
+                    placedPlayer.Location.Y
                     );
             }
-            else if (_PlayerOutside.PlacedLocation.XPosition < 0)
+            else if (_PlayerOutside.Location.X < 0)
             {
                 return new PlacedPlayer(
-                    _PlayerOutside.PlacedLocation.XPosition - _DistanceOutside,
-                    placedPlayer.PlacedLocation.YPosition
+                    _PlayerOutside.Location.X - _DistanceOutside,
+                    placedPlayer.Location.Y
                     );
             }
             else

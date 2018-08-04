@@ -24,7 +24,7 @@ namespace OffensiveFormation.Tests.PlacementRules
                 IPlacementRule placementRule = new OnLineOfScrimmage();
                 playerToPlace = placementRule.Place(playerToPlace);
 
-                Assert.Equal<Location>(expectedLocation, playerToPlace.PlacedLocation);
+                Assert.Equal<Location>(expectedLocation, playerToPlace.Location);
             }
         }
     }

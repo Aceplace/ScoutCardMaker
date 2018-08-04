@@ -28,8 +28,8 @@ namespace OffensiveFormation.PlacementRules
                 throw new PlacementException("Can't place player negative units behind player.");
             }
             return new PlacedPlayer(
-                _PlayerBehind.PlacedLocation.XPosition,
-                _PlayerBehind.PlacedLocation.YPosition + _DistanceBehind
+                _PlayerBehind.Location.X,
+                _PlayerBehind.Location.Y + _DistanceBehind
                 ); 
         }
     }

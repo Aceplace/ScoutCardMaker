@@ -8,7 +8,7 @@ using OffensiveFormation;
 
 namespace OffensiveFormation.Tests
 {
-    public class LocationTester
+    public class LocationTests
     {
         public class ConstructorMethod
         {
@@ -17,8 +17,8 @@ namespace OffensiveFormation.Tests
             {
                 Location location = new Location();
 
-                Assert.Equal(0, location.XPosition);
-                Assert.Equal(0, location.YPosition);
+                Assert.Equal(0, location.X);
+                Assert.Equal(0, location.Y);
             }
 
             [Theory]
@@ -29,8 +29,8 @@ namespace OffensiveFormation.Tests
             {
                 Location location = new Location(givenX, givenY);
 
-                Assert.Equal(givenX, location.XPosition);
-                Assert.Equal(givenY, location.YPosition);
+                Assert.Equal(givenX, location.X);
+                Assert.Equal(givenY, location.Y);
             }
         }
 
