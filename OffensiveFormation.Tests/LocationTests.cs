@@ -17,8 +17,8 @@ namespace OffensiveFormation.Tests
             {
                 Location location = new Location();
 
-                Assert.Equal(0, location.X);
-                Assert.Equal(0, location.Y);
+                Assert.Equal(0, location.x);
+                Assert.Equal(0, location.y);
             }
 
             [Theory]
@@ -29,8 +29,8 @@ namespace OffensiveFormation.Tests
             {
                 Location location = new Location(givenX, givenY);
 
-                Assert.Equal(givenX, location.X);
-                Assert.Equal(givenY, location.Y);
+                Assert.Equal(givenX, location.x);
+                Assert.Equal(givenY, location.y);
             }
         }
 

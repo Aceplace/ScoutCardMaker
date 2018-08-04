@@ -36,7 +36,7 @@ namespace Experimenting
             }
             foreach (PlacedFormation placedFormation in readFormations)
             {
-                Console.WriteLine(placedFormation.RightTackle.Location.X);
+                Console.WriteLine(placedFormation.rightTackle.location.x);
             }
             Console.ReadKey();
 

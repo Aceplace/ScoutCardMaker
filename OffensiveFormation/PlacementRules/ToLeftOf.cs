@@ -8,29 +8,29 @@ namespace OffensiveFormation.PlacementRules
 {
     public class ToLeftOf : IPlacementRule
     {
-        private PlacedPlayer _PlayerToLeftOf;
-        private int _DistanceToLeftOf;
+        private PlacedPlayer _playerToLeftOf;
+        private int _distanceToLeftOf;
 
         public ToLeftOf(PlacedPlayer playerToLeftOf, int distanceToLeftOf)
         {
-            _PlayerToLeftOf = playerToLeftOf;
-            _DistanceToLeftOf = distanceToLeftOf;
+            _playerToLeftOf = playerToLeftOf;
+            _distanceToLeftOf = distanceToLeftOf;
         }
 
         public PlacedPlayer Place(PlacedPlayer placedPlayer)
         {
-            if (_DistanceToLeftOf == 0)
+            if (_distanceToLeftOf == 0)
             {
                 throw new PlacementException("Can't place 0 units to left of.");
             }
-            if (_DistanceToLeftOf < 0)
+            if (_distanceToLeftOf < 0)
             {
                 throw new PlacementException("Can't place player negative distance to left of player.");
             }
 
             return new PlacedPlayer(
-                _PlayerToLeftOf.Location.X - _DistanceToLeftOf,
-                placedPlayer.Location.Y
+                _playerToLeftOf.location.x - _distanceToLeftOf,
+                placedPlayer.location.y
                 );
 
         }

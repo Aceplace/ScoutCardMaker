@@ -11,12 +11,12 @@ namespace OffensiveFormation
     /// </summary>
     public class PlacedPlayer
     {
-        public Location Location { get; set; } = new Location();
+        public Location location { get; set; } = new Location();
 
         public PlacedPlayer(int x, int y)
         {
-            Location.X = x;
-            Location.Y = y;
+            location.x = x;
+            location.y = y;
         }
 
         public PlacedPlayer()
@@ -26,8 +26,8 @@ namespace OffensiveFormation
 
         public void SetLocation(int x, int y)
         {
-            Location.X = x;
-            Location.Y = y;
+            location.x = x;
+            location.y = y;
         }
     }
 }

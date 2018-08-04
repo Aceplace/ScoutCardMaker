@@ -11,21 +11,21 @@ namespace OffensiveFormation
     /// </summary>
     public class FormationPlacer : IFormationPlacer
     {
-        IPlacementRuleFactory _PlacementRuleFactory;
+        IPlacementRuleFactory _placementRuleFactory;
 
         public FormationPlacer(IPlacementRuleFactory placementRuleFactory)
         {
-            _PlacementRuleFactory = placementRuleFactory;
+            _placementRuleFactory = placementRuleFactory;
         }
 
         public PlacedFormation ToPlacedFormation(Formation formation)
         {
             PlacedFormation placedFormation = new PlacedFormation();
 
-            placedFormation.LeftGuard.SetLocation(-4, 0);
-            placedFormation.RightGuard.SetLocation(4, 0);
-            placedFormation.LeftTackle.SetLocation(-8, 0);
-            placedFormation.RightTackle.SetLocation(8, 0);
+            placedFormation.leftGuard.SetLocation(-4, 0);
+            placedFormation.rightGuard.SetLocation(4, 0);
+            placedFormation.leftTackle.SetLocation(-8, 0);
+            placedFormation.rightTackle.SetLocation(8, 0);
 
             return placedFormation;
         }

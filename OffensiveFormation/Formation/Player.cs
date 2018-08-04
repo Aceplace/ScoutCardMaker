@@ -8,13 +8,13 @@ namespace OffensiveFormation
 {
     public class Player
     {
-        public string Tag { get; set; }
-        public FormationRule Rule { get; set; }
+        public string tag { get; set; }
+        public FormationRule rule { get; set; }
 
         public Player()
         {
-            Tag = "";
-            Rule = new FormationRule();
+            tag = "";
+            rule = new FormationRule();
         }
     }
 }

@@ -8,38 +8,38 @@ namespace OffensiveFormation.PlacementRules
 {
     public class InsidePlayer : IPlacementRule
     {
-        private PlacedPlayer _PlayerInside;
-        private int _DistanceInside;
+        private PlacedPlayer _playerInside;
+        private int _distanceInside;
 
         public InsidePlayer(PlacedPlayer playerInside, int distanceInside)
         {
-            _PlayerInside = playerInside;
-            _DistanceInside = distanceInside;
+            _playerInside = playerInside;
+            _distanceInside = distanceInside;
         }
 
         public PlacedPlayer Place(PlacedPlayer placedPlayer)
         {
-            if (_DistanceInside == 0)
+            if (_distanceInside == 0)
             {
                 throw new PlacementException("Can't place 0 units inside.");
             }
-            if (_DistanceInside < 0)
+            if (_distanceInside < 0)
             {
                 throw new PlacementException("Can't place player negative distance inside player.");
             }
 
-            if (_PlayerInside.Location.X > 0)
+            if (_playerInside.location.x > 0)
             {
                 return new PlacedPlayer(
-                    _PlayerInside.Location.X - _DistanceInside,
-                    placedPlayer.Location.Y
+                    _playerInside.location.x - _distanceInside,
+                    placedPlayer.location.y
                     );
             }
-            else if (_PlayerInside.Location.X < 0)
+            else if (_playerInside.location.x < 0)
             {
                 return new PlacedPlayer(
-                    _PlayerInside.Location.X + _DistanceInside,
-                    placedPlayer.Location.Y
+                    _playerInside.location.x + _distanceInside,
+                    placedPlayer.location.y
                     );
             }
             else

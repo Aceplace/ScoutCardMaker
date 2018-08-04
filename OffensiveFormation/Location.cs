@@ -8,19 +8,19 @@ namespace OffensiveFormation
 {
     public class Location
     {
-        public int X { get; set; }
-        public int Y { get; set; }
+        public int x { get; set; }
+        public int y { get; set; }
 
         public Location()
         {
-            X = 0;
-            Y = 0;
+            x = 0;
+            y = 0;
         }
 
         public Location(int x, int y)
         {
-            X = x;
-            Y = y;
+            this.x = x;
+            this.y = y;
         }
 
         public override bool Equals(object obj)
@@ -31,7 +31,7 @@ namespace OffensiveFormation
             }
 
             Location otherLocation = (Location)obj;
-            return X == otherLocation.X && Y == otherLocation.Y;
+            return x == otherLocation.x && y == otherLocation.y;
         }
 
         public static bool operator ==(Location location1, Location location2)

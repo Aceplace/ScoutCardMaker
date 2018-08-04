@@ -13,61 +13,61 @@ namespace OffensiveFormation
 
     public class PlacedFormation
     {
-        public PlacedPlayer Center { get; set; }
-        public PlacedPlayer LeftGuard { get; set; }
-        public PlacedPlayer LeftTackle { get; set; } 
-        public PlacedPlayer RightGuard { get; set; } 
-        public PlacedPlayer RightTackle { get; set; }
-        public PlacedPlayer[] SkillPlayers { get; set; }
-        public Direction StrongSide;
+        public PlacedPlayer center { get; set; }
+        public PlacedPlayer leftGuard { get; set; }
+        public PlacedPlayer leftTackle { get; set; } 
+        public PlacedPlayer rightGuard { get; set; } 
+        public PlacedPlayer rightTackle { get; set; }
+        public PlacedPlayer[] skillPlayers { get; set; }
+        public Direction strongSide;
 
         public PlacedFormation()
         {
-            Center = new PlacedPlayer();
-            LeftGuard = new PlacedPlayer();
-            LeftTackle = new PlacedPlayer();
-            RightGuard = new PlacedPlayer();
-            RightTackle = new PlacedPlayer();
-            SkillPlayers = new PlacedPlayer[6];
-            SkillPlayers[0] = new PlacedPlayer();
-            SkillPlayers[1] = new PlacedPlayer();
-            SkillPlayers[2] = new PlacedPlayer();
-            SkillPlayers[3] = new PlacedPlayer();
-            SkillPlayers[4] = new PlacedPlayer();
-            SkillPlayers[5] = new PlacedPlayer();
-            StrongSide = Direction.Right;
+            center = new PlacedPlayer();
+            leftGuard = new PlacedPlayer();
+            leftTackle = new PlacedPlayer();
+            rightGuard = new PlacedPlayer();
+            rightTackle = new PlacedPlayer();
+            skillPlayers = new PlacedPlayer[6];
+            skillPlayers[0] = new PlacedPlayer();
+            skillPlayers[1] = new PlacedPlayer();
+            skillPlayers[2] = new PlacedPlayer();
+            skillPlayers[3] = new PlacedPlayer();
+            skillPlayers[4] = new PlacedPlayer();
+            skillPlayers[5] = new PlacedPlayer();
+            strongSide = Direction.Right;
         }
 
         public PlacedPlayer GetStrongGuard()
         {
-            return StrongSide == Direction.Right ? RightGuard : LeftGuard;
+            return strongSide == Direction.Right ? rightGuard : leftGuard;
         }
 
         public PlacedPlayer GetStrongTackle()
         {
-            return StrongSide == Direction.Right ? RightTackle : LeftTackle;
+            return strongSide == Direction.Right ? rightTackle : leftTackle;
         }
 
         public PlacedPlayer GetWeakGuard()
         {
-            return StrongSide == Direction.Right ? LeftGuard : RightGuard;
+            return strongSide == Direction.Right ? leftGuard : rightGuard;
         }
 
         public PlacedPlayer GetWeakTackle()
         {
-            return StrongSide == Direction.Right ? LeftTackle : RightTackle;
+            return strongSide == Direction.Right ? leftTackle : rightTackle;
         }
 
         public PlacedPlayer GetNumberedSkillStrong(FlowDirection flowDirection, int number)
         {
-            return StrongSide == Direction.Right ? 
+            return strongSide == Direction.Right ? 
                 GetNumberedSkillDirectional(Direction.Right, flowDirection, number) : 
                 GetNumberedSkillDirectional(Direction.Left, flowDirection, number);
         }
 
         public PlacedPlayer GetNumberedSkillWeak(FlowDirection flowDirection, int number)
         {
-            return StrongSide == Direction.Left ?
+            return strongSide == Direction.Left ?
                 GetNumberedSkillDirectional(Direction.Right, flowDirection, number):
                 GetNumberedSkillDirectional(Direction.Left, flowDirection, number);
         }
@@ -102,13 +102,13 @@ namespace OffensiveFormation
             {
                 if (direction == Direction.Left)
                 {
-                    result = SkillPlayers.OrderBy(placedPlayer => placedPlayer.Location.X)
-                             .ThenBy(placedPlayer => placedPlayer.Location.Y);
+                    result = skillPlayers.OrderBy(placedPlayer => placedPlayer.location.x)
+                             .ThenBy(placedPlayer => placedPlayer.location.y);
                 }
                 else
                 {
-                    result = SkillPlayers.OrderByDescending(placedPlayer => placedPlayer.Location.X)
-                        .ThenBy(placedPlayer => placedPlayer.Location.Y);
+                    result = skillPlayers.OrderByDescending(placedPlayer => placedPlayer.location.x)
+                        .ThenBy(placedPlayer => placedPlayer.location.y);
                 }
                 
             }
@@ -116,17 +116,17 @@ namespace OffensiveFormation
             {
                 if (direction == Direction.Left)
                 {
-                    result = SkillPlayers
-                            .Where(placedPlayer => placedPlayer.Location.X < LeftTackle.Location.X)
-                            .OrderByDescending(placedPlayer => placedPlayer.Location.X)
-                            .ThenBy(placedPlayer => placedPlayer.Location.Y);
+                    result = skillPlayers
+                            .Where(placedPlayer => placedPlayer.location.x < leftTackle.location.x)
+                            .OrderByDescending(placedPlayer => placedPlayer.location.x)
+                            .ThenBy(placedPlayer => placedPlayer.location.y);
                 }
                 else
                 {
-                    result = SkillPlayers
-                            .Where(placedPlayer => placedPlayer.Location.X > RightTackle.Location.X)
-                            .OrderBy(placedPlayer => placedPlayer.Location.X)
-                            .ThenBy(placedPlayer => placedPlayer.Location.Y);
+                    result = skillPlayers
+                            .Where(placedPlayer => placedPlayer.location.x > rightTackle.location.x)
+                            .OrderBy(placedPlayer => placedPlayer.location.x)
+                            .ThenBy(placedPlayer => placedPlayer.location.y);
                 }
                 
             }

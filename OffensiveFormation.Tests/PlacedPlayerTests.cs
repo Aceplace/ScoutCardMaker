@@ -17,7 +17,7 @@ namespace OffensiveFormation.Tests
                 PlacedPlayer placedPlayer = new PlacedPlayer();
                 Location expectedLocation = new Location(0, 0);
 
-                Assert.Equal(expectedLocation, placedPlayer.Location);
+                Assert.Equal(expectedLocation, placedPlayer.location);
             }
 
             [Fact]
@@ -26,7 +26,7 @@ namespace OffensiveFormation.Tests
                 PlacedPlayer placedPlayer = new PlacedPlayer(7, -5);
                 Location expectedLocation = new Location(7, -5);
 
-                Assert.Equal(expectedLocation, placedPlayer.Location);
+                Assert.Equal(expectedLocation, placedPlayer.location);
             }
         }
     }

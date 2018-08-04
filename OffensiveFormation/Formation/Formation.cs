@@ -8,50 +8,50 @@ namespace OffensiveFormation
 {
     public class Formation
     {
-        public Player Center { get; set; } = new Player();
-        public Player RightGuard { get; set; } = new Player();
-        public Player LeftGuard { get; set; } = new Player();
-        public Player LeftTackle { get; set; } = new Player();
-        public Player RightTackle { get; set; } = new Player();
-        public Player[] SkillPlayers { get; set; } = new Player[6];
-        public Direction StrongSide;
+        public Player center { get; set; } = new Player();
+        public Player rightGuard { get; set; } = new Player();
+        public Player leftGuard { get; set; } = new Player();
+        public Player leftTackle { get; set; } = new Player();
+        public Player rightTackle { get; set; } = new Player();
+        public Player[] skillPlayers { get; set; } = new Player[6];
+        public Direction strongSide;
 
         public Formation()
         {
-            Center.Tag = "C";
-            RightGuard.Tag = "RG";
-            RightTackle.Tag = "RT";
-            LeftGuard.Tag = "LG";
-            LeftTackle.Tag = "LT";
-            for (int i = 0; i < SkillPlayers.Length; i++)
+            center.tag = "C";
+            rightGuard.tag = "RG";
+            rightTackle.tag = "RT";
+            leftGuard.tag = "LG";
+            leftTackle.tag = "LT";
+            for (int i = 0; i < skillPlayers.Length; i++)
             {
-                SkillPlayers[i] = new Player();
+                skillPlayers[i] = new Player();
             }
-            SkillPlayers[0].Tag = "0";
-            SkillPlayers[1].Tag = "1";
-            SkillPlayers[2].Tag = "2";
-            SkillPlayers[3].Tag = "3";
-            SkillPlayers[4].Tag = "4";
-            SkillPlayers[5].Tag = "5";
+            skillPlayers[0].tag = "0";
+            skillPlayers[1].tag = "1";
+            skillPlayers[2].tag = "2";
+            skillPlayers[3].tag = "3";
+            skillPlayers[4].tag = "4";
+            skillPlayers[5].tag = "5";
         }
 
         public Formation(string skill1Tag, string skill2Tag, string skill3Tag, string skill4Tag, string skill5Tag, string skill6Tag)
         {
-            Center.Tag = "C";
-            RightGuard.Tag = "RG";
-            RightTackle.Tag = "RT";
-            LeftGuard.Tag = "LG";
-            LeftTackle.Tag = "LT";
-            for (int i = 0; i < SkillPlayers.Length; i++)
+            center.tag = "C";
+            rightGuard.tag = "RG";
+            rightTackle.tag = "RT";
+            leftGuard.tag = "LG";
+            leftTackle.tag = "LT";
+            for (int i = 0; i < skillPlayers.Length; i++)
             {
-                SkillPlayers[i] = new Player();
+                skillPlayers[i] = new Player();
             }
-            SkillPlayers[0].Tag = skill1Tag;
-            SkillPlayers[1].Tag = skill2Tag;
-            SkillPlayers[2].Tag = skill3Tag;
-            SkillPlayers[3].Tag = skill4Tag;
-            SkillPlayers[4].Tag = skill5Tag;
-            SkillPlayers[5].Tag = skill6Tag;
+            skillPlayers[0].tag = skill1Tag;
+            skillPlayers[1].tag = skill2Tag;
+            skillPlayers[2].tag = skill3Tag;
+            skillPlayers[3].tag = skill4Tag;
+            skillPlayers[4].tag = skill5Tag;
+            skillPlayers[5].tag = skill6Tag;
         }
     }
 }

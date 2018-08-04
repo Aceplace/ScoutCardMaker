@@ -10,7 +10,7 @@ namespace OffensiveFormation.PlacementRules
     {
         public PlacedPlayer Place(PlacedPlayer placedPlayer)
         {
-            return new PlacedPlayer(placedPlayer.Location.X, 0);
+            return new PlacedPlayer(placedPlayer.location.x, 0);
         }
     }
 }

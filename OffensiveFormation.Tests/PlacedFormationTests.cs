@@ -16,8 +16,8 @@ namespace OffensiveFormation.Tests
             public void ReturnsRightGuardIfStrongSideIsRight()
             {
                 PlacedFormation placedFormation = new PlacedFormation();
-                PlacedPlayer expectedPlayer = placedFormation.RightGuard;
-                placedFormation.StrongSide = Direction.Right;
+                PlacedPlayer expectedPlayer = placedFormation.rightGuard;
+                placedFormation.strongSide = Direction.Right;
 
                 PlacedPlayer returnedPlayer = placedFormation.GetStrongGuard();
                 bool samePlayer = ReferenceEquals(returnedPlayer, expectedPlayer);
@@ -29,8 +29,8 @@ namespace OffensiveFormation.Tests
             public void ReturnsLeftGuardIfStrongSideIsLeft()
             {
                 PlacedFormation placedFormation = new PlacedFormation();
-                PlacedPlayer expectedPlayer = placedFormation.LeftGuard;
-                placedFormation.StrongSide = Direction.Left;
+                PlacedPlayer expectedPlayer = placedFormation.leftGuard;
+                placedFormation.strongSide = Direction.Left;
 
                 PlacedPlayer returnedPlayer = placedFormation.GetStrongGuard();
                 bool samePlayer = ReferenceEquals(returnedPlayer, expectedPlayer);
@@ -45,8 +45,8 @@ namespace OffensiveFormation.Tests
             public void ReturnsRightGuardIfStrongSideIsLeft()
             {
                 PlacedFormation placedFormation = new PlacedFormation();
-                PlacedPlayer expectedPlayer = placedFormation.RightGuard;
-                placedFormation.StrongSide = Direction.Left;
+                PlacedPlayer expectedPlayer = placedFormation.rightGuard;
+                placedFormation.strongSide = Direction.Left;
 
                 PlacedPlayer returnedPlayer = placedFormation.GetWeakGuard();
                 bool samePlayer = ReferenceEquals(returnedPlayer, expectedPlayer);
@@ -58,8 +58,8 @@ namespace OffensiveFormation.Tests
             public void ReturnsLeftGuardIfStrongSideIsRight()
             {
                 PlacedFormation placedFormation = new PlacedFormation();
-                PlacedPlayer expectedPlayer = placedFormation.LeftGuard;
-                placedFormation.StrongSide = Direction.Right;
+                PlacedPlayer expectedPlayer = placedFormation.leftGuard;
+                placedFormation.strongSide = Direction.Right;
 
                 PlacedPlayer returnedPlayer = placedFormation.GetWeakGuard();
                 bool samePlayer = ReferenceEquals(returnedPlayer, expectedPlayer);
@@ -74,8 +74,8 @@ namespace OffensiveFormation.Tests
             public void ReturnsRightTackleIfStrongSideIsRight()
             {
                 PlacedFormation placedFormation = new PlacedFormation();
-                PlacedPlayer expectedPlayer = placedFormation.RightTackle;
-                placedFormation.StrongSide = Direction.Right;
+                PlacedPlayer expectedPlayer = placedFormation.rightTackle;
+                placedFormation.strongSide = Direction.Right;
 
                 PlacedPlayer returnedPlayer = placedFormation.GetStrongTackle();
                 bool samePlayer = ReferenceEquals(returnedPlayer, expectedPlayer);
@@ -87,8 +87,8 @@ namespace OffensiveFormation.Tests
             public void ReturnsLeftTackleIfStrongSideIsLeft()
             {
                 PlacedFormation placedFormation = new PlacedFormation();
-                PlacedPlayer expectedPlayer = placedFormation.LeftTackle;
-                placedFormation.StrongSide = Direction.Left;
+                PlacedPlayer expectedPlayer = placedFormation.leftTackle;
+                placedFormation.strongSide = Direction.Left;
 
                 PlacedPlayer returnedPlayer = placedFormation.GetStrongTackle();
                 bool samePlayer = ReferenceEquals(returnedPlayer, expectedPlayer);
@@ -103,8 +103,8 @@ namespace OffensiveFormation.Tests
             public void ReturnsRightTackleIfStrongSideIsLeft()
             {
                 PlacedFormation placedFormation = new PlacedFormation();
-                PlacedPlayer expectedPlayer = placedFormation.RightTackle;
-                placedFormation.StrongSide = Direction.Left;
+                PlacedPlayer expectedPlayer = placedFormation.rightTackle;
+                placedFormation.strongSide = Direction.Left;
 
                 PlacedPlayer returnedPlayer = placedFormation.GetWeakTackle();
                 bool samePlayer = ReferenceEquals(returnedPlayer, expectedPlayer);
@@ -116,8 +116,8 @@ namespace OffensiveFormation.Tests
             public void ReturnsLeftTackleIfStrongSideIsRight()
             {
                 PlacedFormation placedFormation = new PlacedFormation();
-                PlacedPlayer expectedPlayer = placedFormation.LeftTackle;
-                placedFormation.StrongSide = Direction.Right;
+                PlacedPlayer expectedPlayer = placedFormation.leftTackle;
+                placedFormation.strongSide = Direction.Right;
 
                 PlacedPlayer returnedPlayer = placedFormation.GetWeakTackle();
                 bool samePlayer = ReferenceEquals(returnedPlayer, expectedPlayer);
@@ -136,36 +136,36 @@ namespace OffensiveFormation.Tests
             {
                 testPlacedFormations = new PlacedFormation[4];
                 testPlacedFormations[0] = new PlacedFormation();
-                testPlacedFormations[0].SkillPlayers[0].SetLocation(20, 5);
-                testPlacedFormations[0].SkillPlayers[1].SetLocation(18, 10);
-                testPlacedFormations[0].SkillPlayers[2].SetLocation(10, 5);
-                testPlacedFormations[0].SkillPlayers[3].SetLocation(15, 4);
-                testPlacedFormations[0].SkillPlayers[4].SetLocation(-5, 5);
-                testPlacedFormations[0].SkillPlayers[5].SetLocation(0, 5);
+                testPlacedFormations[0].skillPlayers[0].SetLocation(20, 5);
+                testPlacedFormations[0].skillPlayers[1].SetLocation(18, 10);
+                testPlacedFormations[0].skillPlayers[2].SetLocation(10, 5);
+                testPlacedFormations[0].skillPlayers[3].SetLocation(15, 4);
+                testPlacedFormations[0].skillPlayers[4].SetLocation(-5, 5);
+                testPlacedFormations[0].skillPlayers[5].SetLocation(0, 5);
 
                 testPlacedFormations[1] = new PlacedFormation();
-                testPlacedFormations[1].SkillPlayers[0].SetLocation(20, 5);
-                testPlacedFormations[1].SkillPlayers[1].SetLocation(18, 10);
-                testPlacedFormations[1].SkillPlayers[2].SetLocation(15, 5);
-                testPlacedFormations[1].SkillPlayers[3].SetLocation(15, 4);
-                testPlacedFormations[1].SkillPlayers[4].SetLocation(-5, 5);
-                testPlacedFormations[1].SkillPlayers[5].SetLocation(0, 5);
+                testPlacedFormations[1].skillPlayers[0].SetLocation(20, 5);
+                testPlacedFormations[1].skillPlayers[1].SetLocation(18, 10);
+                testPlacedFormations[1].skillPlayers[2].SetLocation(15, 5);
+                testPlacedFormations[1].skillPlayers[3].SetLocation(15, 4);
+                testPlacedFormations[1].skillPlayers[4].SetLocation(-5, 5);
+                testPlacedFormations[1].skillPlayers[5].SetLocation(0, 5);
 
                 testPlacedFormations[2] = new PlacedFormation();
-                testPlacedFormations[2].SkillPlayers[0].SetLocation(20, 5);
-                testPlacedFormations[2].SkillPlayers[1].SetLocation(18, 10);
-                testPlacedFormations[2].SkillPlayers[2].SetLocation(15, 4);
-                testPlacedFormations[2].SkillPlayers[3].SetLocation(15, 5);
-                testPlacedFormations[2].SkillPlayers[4].SetLocation(-5, 5);
-                testPlacedFormations[2].SkillPlayers[5].SetLocation(0, 5);
+                testPlacedFormations[2].skillPlayers[0].SetLocation(20, 5);
+                testPlacedFormations[2].skillPlayers[1].SetLocation(18, 10);
+                testPlacedFormations[2].skillPlayers[2].SetLocation(15, 4);
+                testPlacedFormations[2].skillPlayers[3].SetLocation(15, 5);
+                testPlacedFormations[2].skillPlayers[4].SetLocation(-5, 5);
+                testPlacedFormations[2].skillPlayers[5].SetLocation(0, 5);
 
                 testPlacedFormations[3] = new PlacedFormation();
-                testPlacedFormations[3].SkillPlayers[0].SetLocation(-20, 5);
-                testPlacedFormations[3].SkillPlayers[1].SetLocation(10, 10);
-                testPlacedFormations[3].SkillPlayers[2].SetLocation(5, 4);
-                testPlacedFormations[3].SkillPlayers[3].SetLocation(-10, 5);
-                testPlacedFormations[3].SkillPlayers[4].SetLocation(-5, 5);
-                testPlacedFormations[3].SkillPlayers[5].SetLocation(-15, 5);
+                testPlacedFormations[3].skillPlayers[0].SetLocation(-20, 5);
+                testPlacedFormations[3].skillPlayers[1].SetLocation(10, 10);
+                testPlacedFormations[3].skillPlayers[2].SetLocation(5, 4);
+                testPlacedFormations[3].skillPlayers[3].SetLocation(-10, 5);
+                testPlacedFormations[3].skillPlayers[4].SetLocation(-5, 5);
+                testPlacedFormations[3].skillPlayers[5].SetLocation(-15, 5);
             }
         }
 
@@ -210,7 +210,7 @@ namespace OffensiveFormation.Tests
             [MemberData(nameof(GetsCorrectPlayerFromOutsideInTestData))]
             public void GetsCorrectPlayerFromOutsideIn(PlacedFormation placedFormation, int number, int expectedPlayerIndex)
             {
-                PlacedPlayer expectedPlayer = placedFormation.SkillPlayers[expectedPlayerIndex];
+                PlacedPlayer expectedPlayer = placedFormation.skillPlayers[expectedPlayerIndex];
 
                 PlacedPlayer returnedPlayer = placedFormation.GetNumberedSkillRight(FlowDirection.OutsideIn, number);
                 bool samePlayer = ReferenceEquals(expectedPlayer, returnedPlayer);
@@ -222,7 +222,7 @@ namespace OffensiveFormation.Tests
             [MemberData(nameof(GetsCorrectPlayerFromInsideOutTestData))]
             public void GetsCorrectPlayerFromInsideOut(PlacedFormation placedFormation, int number, int expectedPlayerIndex)
             {
-                PlacedPlayer expectedPlayer = placedFormation.SkillPlayers[expectedPlayerIndex];
+                PlacedPlayer expectedPlayer = placedFormation.skillPlayers[expectedPlayerIndex];
 
                 PlacedPlayer returnedPlayer = placedFormation.GetNumberedSkillRight(FlowDirection.InsideOut, number);
                 bool samePlayer = ReferenceEquals(expectedPlayer, returnedPlayer);
@@ -310,7 +310,7 @@ namespace OffensiveFormation.Tests
             [MemberData(nameof(GetsCorrectPlayerFromOutsideInTestData))]
             public void GetsCorrectPlayerFromOutsideIn(PlacedFormation placedFormation, int number, int expectedPlayerIndex)
             {
-                PlacedPlayer expectedPlayer = placedFormation.SkillPlayers[expectedPlayerIndex];
+                PlacedPlayer expectedPlayer = placedFormation.skillPlayers[expectedPlayerIndex];
 
                 PlacedPlayer returnedPlayer = placedFormation.GetNumberedSkillLeft(FlowDirection.OutsideIn, number);
                 bool samePlayer = ReferenceEquals(expectedPlayer, returnedPlayer);
@@ -322,7 +322,7 @@ namespace OffensiveFormation.Tests
             [MemberData(nameof(GetsCorrectPlayerFromInsideOutTestData))]
             public void GetsCorrectPlayerFromInsideOut(PlacedFormation placedFormation, int number, int expectedPlayerIndex)
             {
-                PlacedPlayer expectedPlayer = placedFormation.SkillPlayers[expectedPlayerIndex];
+                PlacedPlayer expectedPlayer = placedFormation.skillPlayers[expectedPlayerIndex];
 
                 PlacedPlayer returnedPlayer = placedFormation.GetNumberedSkillLeft(FlowDirection.InsideOut, number);
                 bool samePlayer = ReferenceEquals(expectedPlayer, returnedPlayer);
@@ -401,8 +401,8 @@ namespace OffensiveFormation.Tests
             public void GetsCorrectPlayerFromOutsideIn(PlacedFormation placedFormation, Direction strongDirection, 
                                                     int number, int expectedPlayerIndex)
             {
-                placedFormation.StrongSide = strongDirection;
-                PlacedPlayer expectedPlayer = placedFormation.SkillPlayers[expectedPlayerIndex];
+                placedFormation.strongSide = strongDirection;
+                PlacedPlayer expectedPlayer = placedFormation.skillPlayers[expectedPlayerIndex];
 
                 PlacedPlayer returnedPlayer = placedFormation.GetNumberedSkillStrong(FlowDirection.OutsideIn, number);
                 bool samePlayer = ReferenceEquals(expectedPlayer, returnedPlayer);
@@ -461,8 +461,8 @@ namespace OffensiveFormation.Tests
             public void GetsCorrectPlayerFromOutsideIn(PlacedFormation placedFormation, Direction strongDirection,
                                                     int number, int expectedPlayerIndex)
             {
-                placedFormation.StrongSide = strongDirection;
-                PlacedPlayer expectedPlayer = placedFormation.SkillPlayers[expectedPlayerIndex];
+                placedFormation.strongSide = strongDirection;
+                PlacedPlayer expectedPlayer = placedFormation.skillPlayers[expectedPlayerIndex];
 
                 PlacedPlayer returnedPlayer = placedFormation.GetNumberedSkillWeak(FlowDirection.OutsideIn, number);
                 bool samePlayer = ReferenceEquals(expectedPlayer, returnedPlayer);
