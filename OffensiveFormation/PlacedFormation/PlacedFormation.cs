@@ -38,6 +38,36 @@ namespace OffensiveFormation
             strongSide = Direction.Right;
         }
 
+        public PlacedPlayer GetPlayerByTag(string tag)
+        {
+            if (center.tag == tag)
+            {
+                return center;
+            }
+            if (leftGuard.tag == tag)
+            {
+                return leftGuard;
+            }
+            if (leftTackle.tag == tag)
+            {
+                return leftTackle;
+            }
+            if (rightGuard.tag == tag)
+            {
+                return rightGuard;
+            }
+            if (rightTackle.tag == tag)
+            {
+                return rightTackle;
+            }
+            foreach (PlacedPlayer skillPlayer in skillPlayers)
+            {
+                if (skillPlayer.tag == tag)
+                    return skillPlayer;
+            }
+            throw new PlacedFormationException($"No player in formation has tag {tag}");
+        }
+
         public PlacedPlayer GetStrongGuard()
         {
             return strongSide == Direction.Right ? rightGuard : leftGuard;

@@ -41,13 +41,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Direction.cs" />
-    <Compile Include="Formation\Formation.cs" />
+    <Compile Include="Formations\Formation.cs" />
+    <Compile Include="Formations\FormationException.cs" />
+    <Compile Include="PlacementRuleAdapters\BehindPlayerAdapter.cs" />
     <Compile Include="PlacedFormation\IFormationPlacer.cs" />
     <Compile Include="PlacedFormation\IPlacementRuleFactory.cs" />
     <Compile Include="PlacedFormation\FormationPlacer.cs" />
-    <Compile Include="Formation\FormationRule.cs" />
-    <Compile Include="Formation\FormationRuleParameter.cs" />
+    <Compile Include="Formations\FormationRule.cs" />
+    <Compile Include="Formations\FormationRuleParameter.cs" />
     <Compile Include="PlacedFormation\PlacedFormationException.cs" />
+    <Compile Include="PlacedFormation\PlacementRuleFactory.cs" />
+    <Compile Include="PlacementRuleAdapters\IPlacementRuleAdapter.cs" />
     <Compile Include="PlacementRules\IPlacementRule.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="PlacedFormation\PlacedFormation.cs" />
@@ -59,8 +63,9 @@
     <Compile Include="PlacementRules\PlacementException.cs" />
     <Compile Include="PlacementRules\ToLeftOf.cs" />
     <Compile Include="PlacementRules\ToRightOf.cs" />
-    <Compile Include="Formation\Player.cs" />
+    <Compile Include="Formations\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

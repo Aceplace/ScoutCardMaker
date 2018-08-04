@@ -9,6 +9,49 @@ namespace OffensiveFormation.Tests
 {
     public class PlacedFormationTests
     {
+        public class GetPlayerByTagMethod
+        {
+            [Fact]
+            public void GetsThePlayerWithTheProperTag_01()
+            {
+                PlacedFormation placedFormation = new PlacedFormation();
+                placedFormation.leftTackle.tag = "LT";
+                placedFormation.skillPlayers[2].tag = "X";
+                PlacedPlayer expectedPlayer = placedFormation.skillPlayers[2];
+
+                PlacedPlayer returnedPlayer = placedFormation.GetPlayerByTag("X");
+                bool sameObject = ReferenceEquals(expectedPlayer, returnedPlayer);
+
+                Assert.True(sameObject);
+            }
+
+            [Fact]
+            public void GetsThePlayerWithTheProperTag_02()
+            {
+                PlacedFormation placedFormation = new PlacedFormation();
+                placedFormation.leftTackle.tag = "LT";
+                placedFormation.skillPlayers[2].tag = "X";
+                PlacedPlayer expectedPlayer = placedFormation.leftTackle;
+
+                PlacedPlayer returnedPlayer = placedFormation.GetPlayerByTag("LT");
+                bool sameObject = ReferenceEquals(expectedPlayer, returnedPlayer);
+
+                Assert.True(sameObject);
+            }
+
+            [Fact]
+            public void GettingPlayerWithNonexistantTagThrowsException()
+            {
+                PlacedFormation placedFormation = new PlacedFormation();
+                placedFormation.leftTackle.tag = "LT";
+                placedFormation.skillPlayers[2].tag = "X";
+
+                PlacedFormationException ex = Assert.Throws<PlacedFormationException>(() => placedFormation.GetPlayerByTag("Nonexistent"));
+
+                Assert.Equal("No player in formation has tag Nonexistent", ex.Message);
+            }
+        }
+
         #region lineman method tests
         public class GetStrongGuardMethod
         {
@@ -125,9 +168,9 @@ namespace OffensiveFormation.Tests
                 Assert.True(samePlayer);
             }
         }
-        #endregion 
+        #endregion
 
-
+        #region Getting skill players tests
         static class NumberedSkillPlayersPlacedFormationTestData
         {
             public static PlacedFormation[] testPlacedFormations;
@@ -497,6 +540,7 @@ namespace OffensiveFormation.Tests
                 Assert.Equal("Can't get numbers skill player larger then 6. There are only 6 skill players.", ex.Message);
             }
         }
+        #endregion
 
 
     }

@@ -8,18 +8,18 @@ namespace OffensiveFormation
 {
     public class FormationRuleParameter
     {
-        public string parameterName { get; set; }
+        public string name { get; set; }
         public string value { get; set; }
 
-        FormationRuleParameter()
+        public FormationRuleParameter()
         {
-            parameterName = "";
+            name = "";
             value = "";
         }
 
-        FormationRuleParameter(string parameterName, string value)
+        public FormationRuleParameter(string parameterName, string value)
         {
-            this.parameterName = parameterName;
+            this.name = parameterName;
             this.value = value;
         }
     }

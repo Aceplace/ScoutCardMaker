@@ -12,11 +12,13 @@ namespace OffensiveFormation
     public class PlacedPlayer
     {
         public Location location { get; set; } = new Location();
+        public String tag { get; set; } = "";
 
-        public PlacedPlayer(int x, int y)
+        public PlacedPlayer(int x, int y, string tag="")
         {
             location.x = x;
             location.y = y;
+            this.tag = tag;
         }
 
         public PlacedPlayer()

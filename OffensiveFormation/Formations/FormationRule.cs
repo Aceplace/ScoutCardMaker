@@ -16,5 +16,17 @@ namespace OffensiveFormation
             rule = "";
             parameters = new List<FormationRuleParameter>();
         }
+
+        public string GetParameterValue(string parameterName)
+        {
+            foreach (FormationRuleParameter parameter in parameters)
+            {
+                if (parameter.name == parameterName)
+                {
+                    return parameter.value;
+                }
+            }
+            throw new FormationException($"The parameter {parameterName} doesn't exist for the formation rule {rule}");
+        }
     }
 }
