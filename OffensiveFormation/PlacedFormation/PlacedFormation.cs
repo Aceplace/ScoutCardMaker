@@ -38,6 +38,7 @@ namespace OffensiveFormation
             strongSide = Direction.Right;
         }
 
+        /// <exception cref="PlacedFormationException">"No player in formation has tag {tag}"</exception>
         public PlacedPlayer GetPlayerByTag(string tag)
         {
             if (center.tag == tag)

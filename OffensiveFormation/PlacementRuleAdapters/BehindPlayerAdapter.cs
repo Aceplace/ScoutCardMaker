@@ -7,11 +7,17 @@ using OffensiveFormation.PlacementRules;
 
 namespace OffensiveFormation.PlacementRuleAdapters
 {
-    class BehindPlayerAdapter : IPlacementRuleAdapter
+    public class BehindPlayerAdapter : IPlacementRuleAdapter
     {
         public IPlacementRule GetPlacementRule(FormationRule formationRule, PlacedFormation placedFormation)
         {
-            return new BehindPlayer(new PlacedPlayer(), 10);
+            string behindTagParameter = formationRule.GetParameterValue("playerBehindTag");
+            string distanceBehindString = formationRule.GetParameterValue("distanceBehind");
+            int distanceBehind = int.Parse(distanceBehindString);
+
+            PlacedPlayer playerBehind = placedFormation.GetPlayerByTag(behindTagParameter);
+
+            return new BehindPlayer(playerBehind, distanceBehind);
         }
     }
 }

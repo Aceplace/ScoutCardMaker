@@ -17,6 +17,8 @@ namespace OffensiveFormation
             parameters = new List<FormationRuleParameter>();
         }
 
+
+        /// <exception cref="FormationException"></exception>
         public string GetParameterValue(string parameterName)
         {
             foreach (FormationRuleParameter parameter in parameters)
